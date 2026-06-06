@@ -12,28 +12,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-
   <link rel="preload" as="image" href="https://wellnessinharmony.com/wp-content/uploads/2025/09/WIH2021-Finals-7-scaled.jpg" fetchpriority="high">
 
   <style>
-    /* ── Reset & Variables ──────────────────────────────────── */
+    /* ── Reset ─────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── Palette — elevated from her existing purple/teal ──── */
     :root {
-      --ink:       #1c2b1e;
-      --ink-mid:   #243327;
-      --ink-lt:    #2f4233;
-      --cream:     #f7f2ea;
-      --cream-dk:  #ede6d8;
-      --gold:      #b8823a;
-      --gold-lt:   #cda05a;
-      --sage:      #5e7d54;
-      --text:      #2e2b27;
-      --text-lt:   #6b6660;
+      --ink:        #1a0b24;   /* deep plum-black (her dark, purpled) */
+      --ink-mid:    #29103f;   /* mid plum (section backgrounds) */
+      --ink-lt:     #3a1a55;   /* lighter plum */
+      --plum:       #7a3587;   /* her headline purple #77357f, enriched */
+      --plum-lt:    #a864b8;   /* lighter amethyst — hover/accent */
+      --teal:       #3d9690;   /* her teal #7ddad2, matured and deepened */
+      --teal-lt:    #6ec6c0;   /* lighter teal */
+      --teal-pale:  #b8e8e5;   /* very light teal for light-section accents */
+      --cream:      #faf5f0;   /* warm ivory (her #faf9f5, warmed) */
+      --parchment:  #f3ecf7;   /* lavender parchment (her #f9f6fb, deepened) */
+      --text:       #211322;   /* plum-dark body text */
+      --text-lt:    #7e6885;   /* muted plum-grey */
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', system-ui, sans-serif;
       font-weight: 300;
@@ -41,864 +42,624 @@
       background: var(--cream);
       overflow-x: hidden;
     }
-
     img { display: block; max-width: 100%; }
     a   { color: inherit; text-decoration: none; }
 
     /* ── Utilities ──────────────────────────────────────────── */
     .eyebrow {
       display: block;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 400;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--teal);
     }
 
-    /* Scroll-reveal — hidden only after JS loads */
     .js .rv {
       opacity: 0;
       transform: translateY(26px);
       transition: opacity 0.78s ease, transform 0.78s ease;
     }
-    .rv.visible {
-      opacity: 1 !important;
-      transform: none !important;
+    .rv.visible { opacity: 1 !important; transform: none !important; }
+    .js .rv-d1 { transition-delay: 0.1s; }
+    .js .rv-d2 { transition-delay: 0.2s; }
+    .js .rv-d3 { transition-delay: 0.32s; }
+    .js .rv-d4 { transition-delay: 0.44s; }
+
+    /* ── Buttons ────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #fff; background: var(--plum);
+      padding: 0.95rem 2.2rem;
+      white-space: nowrap; flex-shrink: 0;
+      transition: background 0.3s;
+      border: none; cursor: pointer;
     }
-    .js .rv-delay-1 { transition-delay: 0.12s; }
-    .js .rv-delay-2 { transition-delay: 0.22s; }
-    .js .rv-delay-3 { transition-delay: 0.34s; }
+    .btn-primary:hover { background: var(--plum-lt); }
+
+    .btn-teal {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #fff; background: var(--teal);
+      padding: 0.95rem 2.2rem;
+      white-space: nowrap; flex-shrink: 0;
+      transition: background 0.3s;
+    }
+    .btn-teal:hover { background: var(--teal-lt); }
+
+    .btn-ghost-light {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--cream); background: transparent;
+      padding: 0.95rem 2.2rem;
+      border: 1px solid rgba(250,245,240,0.35);
+      white-space: nowrap; flex-shrink: 0;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost-light:hover { border-color: var(--teal-lt); color: var(--teal-lt); }
+
+    .btn-ghost-dark {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--ink); background: transparent;
+      padding: 0.95rem 2.2rem;
+      border: 1px solid rgba(26,11,36,0.3);
+      white-space: nowrap; flex-shrink: 0;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost-dark:hover { border-color: var(--plum); color: var(--plum); }
 
     /* ── NAV ────────────────────────────────────────────────── */
     .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      padding: 1.6rem clamp(1.5rem, 5vw, 4rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
       transition: background 0.4s, backdrop-filter 0.4s, padding 0.3s;
     }
     .nav.scrolled {
-      background: rgba(28, 43, 30, 0.9);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+      background: rgba(26, 11, 36, 0.92);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      padding-top: 0.9rem; padding-bottom: 0.9rem;
     }
-
     .nav-left { display: flex; flex-direction: column; gap: 0.08rem; }
     .nav-brand {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--cream);
-      letter-spacing: 0.03em;
-      line-height: 1;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 500;
+      color: var(--cream); letter-spacing: 0.03em; line-height: 1;
     }
-    .nav-brand em { font-style: italic; color: var(--gold-lt); }
+    .nav-brand em { font-style: italic; color: var(--teal-lt); }
     .nav-sub {
-      font-size: 0.58rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(247, 242, 234, 0.45);
+      font-size: 0.57rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(250,245,240,0.4);
     }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 2.2rem;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
     .nav-links a {
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(247, 242, 234, 0.75);
-      transition: color 0.3s;
+      font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: rgba(250,245,240,0.72); transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--gold-lt); }
-
+    .nav-links a:hover { color: var(--teal-lt); }
     .btn-nav {
-      font-size: 0.66rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: var(--gold);
-      padding: 0.65rem 1.5rem;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background 0.3s;
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #fff; background: var(--plum); padding: 0.6rem 1.4rem;
+      white-space: nowrap; flex-shrink: 0; transition: background 0.3s;
       display: inline-block;
     }
-    .btn-nav:hover { background: var(--gold-lt); }
-
+    .btn-nav:hover { background: var(--plum-lt); }
     .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-      cursor: pointer;
-      padding: 0.2rem;
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; outline: none;
+      -webkit-appearance: none; appearance: none; cursor: pointer;
     }
     .nav-toggle span {
-      display: block;
-      width: 24px;
-      height: 1.5px;
-      background: var(--cream);
+      display: block; width: 24px; height: 1.5px; background: var(--cream);
       transition: transform 0.3s, opacity 0.3s;
     }
-
-    /* Mobile nav overlay */
     .nav-mobile {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--ink);
-      z-index: 199;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2.8rem;
+      display: none; position: fixed; inset: 0; background: var(--ink);
+      z-index: 199; flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.2rem;
     }
     .nav-mobile.open { display: flex; }
     .nav-mobile a {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 5vw, 2.6rem);
-      font-style: italic;
-      color: var(--cream);
-      letter-spacing: 0.04em;
-      transition: color 0.3s;
+      font-size: clamp(1.6rem, 4vw, 2.2rem); font-style: italic;
+      color: var(--cream); transition: color 0.3s;
     }
-    .nav-mobile a:hover { color: var(--gold-lt); }
+    .nav-mobile a:hover { color: var(--teal-lt); }
     .nav-mobile-close {
-      position: absolute;
-      top: 1.8rem; right: 2rem;
-      background: none;
-      border: none;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-      cursor: pointer;
-      color: rgba(247, 242, 234, 0.6);
-      font-size: 1.4rem;
-      transition: color 0.3s;
+      position: absolute; top: 1.8rem; right: 2rem;
+      background: none; border: none; outline: none;
+      -webkit-appearance: none; appearance: none;
+      cursor: pointer; color: rgba(250,245,240,0.55); font-size: 1.4rem;
     }
-    .nav-mobile-close:hover { color: var(--cream); }
 
     /* ── HERO ───────────────────────────────────────────────── */
     .hero {
-      position: relative;
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      position: relative; min-height: 100dvh;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
     .hero-bg img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      transform: scale(1.08) translateZ(0);
-      will-change: transform;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      transform: scale(1.08) translateZ(0); will-change: transform;
       transition: transform 8s ease;
     }
     .hero-bg img.loaded { transform: scale(1.06) translateZ(0); }
-
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        160deg,
-        rgba(28, 43, 30, 0.25) 0%,
-        rgba(28, 43, 30, 0.55) 45%,
-        rgba(28, 43, 30, 0.82) 85%,
-        rgba(28, 43, 30, 0.93) 100%
-      );
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg,
+        rgba(26,11,36,0.2) 0%, rgba(26,11,36,0.5) 40%,
+        rgba(26,11,36,0.78) 80%, rgba(26,11,36,0.92) 100%);
     }
-
     .hero-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: clamp(7rem, 16vw, 11rem) clamp(1.5rem, 6vw, 5rem) clamp(5rem, 10vw, 7rem);
-      max-width: 920px;
+      position: relative; z-index: 1; text-align: center;
+      padding: clamp(7rem,16vw,11rem) clamp(1.5rem,6vw,5rem) clamp(5rem,10vw,7rem);
+      max-width: 900px;
     }
-
     .hero-eyebrow {
-      font-size: 0.66rem;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      margin-bottom: 2.2rem;
+      font-size: 0.65rem; font-weight: 400; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--teal-lt); margin-bottom: 2rem;
     }
-
     .hero-h1 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(3rem, 7.5vw, 5.8rem);
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.08;
-      margin-bottom: 1.6rem;
-      letter-spacing: -0.01em;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7.2vw, 5.6rem); font-weight: 400;
+      color: var(--cream); line-height: 1.08; margin-bottom: 1.5rem;
     }
-    .hero-h1 em {
-      font-style: italic;
-      color: var(--gold-lt);
-    }
-
+    .hero-h1 em { font-style: italic; color: var(--teal-lt); }
     .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.15rem);
-      font-weight: 300;
-      color: rgba(247, 242, 234, 0.7);
-      max-width: 540px;
-      margin: 0 auto 2.8rem;
-      line-height: 1.75;
+      font-size: clamp(0.95rem, 2vw, 1.12rem); font-weight: 300;
+      color: rgba(250,245,240,0.68); max-width: 520px;
+      margin: 0 auto 2.6rem; line-height: 1.75;
     }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: var(--gold);
-      padding: 1rem 2.4rem;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background 0.3s;
-      display: inline-block;
-    }
-    .btn-primary:hover { background: var(--gold-lt); }
-
-    .btn-ghost {
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--cream);
-      background: transparent;
-      padding: 1rem 2.4rem;
-      border: 1px solid rgba(247, 242, 234, 0.35);
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: border-color 0.3s, color 0.3s;
-      display: inline-block;
-    }
-    .btn-ghost:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
-
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .hero-badges {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 0; right: 0;
-      z-index: 1;
-      display: flex;
-      gap: clamp(1rem, 3vw, 2.5rem);
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 0 1.5rem;
+      position: absolute; bottom: 2.2rem; left: 0; right: 0; z-index: 1;
+      display: flex; gap: clamp(1rem,3vw,2.5rem);
+      align-items: center; justify-content: center; flex-wrap: wrap; padding: 0 1.5rem;
     }
     .hero-badge {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(247, 242, 234, 0.55);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(250,245,240,0.5); display: flex; align-items: center; gap: 0.45rem;
     }
-    .hero-badge::before {
-      content: '✦';
-      color: var(--gold);
-      font-size: 0.45rem;
-      flex-shrink: 0;
-    }
+    .hero-badge::before { content: '✦'; color: var(--teal); font-size: 0.42rem; flex-shrink: 0; }
 
     /* ── MARQUEE ─────────────────────────────────────────────── */
-    .marquee-wrap {
-      background: var(--ink);
-      padding: 1.15rem 0;
-      overflow: hidden;
-    }
+    .marquee-wrap { background: var(--ink); padding: 1.1rem 0; overflow: hidden; }
     .marquee-track {
-      display: flex;
-      animation: marquee 32s linear infinite;
-      width: max-content;
+      display: flex; animation: marquee 34s linear infinite; width: max-content;
     }
     .marquee-track span {
-      font-size: 0.66rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(247, 242, 234, 0.45);
-      padding: 0 1.5rem;
-      white-space: nowrap;
+      font-size: 0.64rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(250,245,240,0.4); padding: 0 1.5rem; white-space: nowrap;
     }
-    .marquee-track .sep {
-      color: var(--gold);
-      padding: 0 0.2rem;
-      letter-spacing: 0;
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
+    .marquee-track .sep { color: var(--teal); padding: 0 0.2rem; letter-spacing: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
 
     /* ── PATTERN SECTION ─────────────────────────────────────── */
-    .pattern-section {
-      background: var(--cream);
-      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
-    }
+    .pattern-section { background: var(--cream); padding: clamp(5rem,11vw,9rem) clamp(1.5rem,5vw,4rem); }
     .pattern-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: clamp(3rem, 6vw, 7rem);
-      align-items: start;
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: clamp(3rem,6vw,7rem); align-items: start;
     }
-
-    .pattern-quote-wrap {
-      position: sticky;
-      top: 7rem;
-    }
+    .pattern-quote-wrap { position: sticky; top: 7rem; }
     .pattern-openquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 7rem;
-      line-height: 0.6;
-      color: var(--gold);
-      opacity: 0.22;
-      margin-bottom: 1.6rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 7rem;
+      line-height: 0.6; color: var(--plum); opacity: 0.2; margin-bottom: 1.6rem;
     }
     .pattern-quote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1.3;
-      font-style: italic;
+      font-size: clamp(1.7rem,3.5vw,2.5rem); font-weight: 400;
+      color: var(--ink); line-height: 1.3; font-style: italic;
     }
-    .pattern-quote strong { font-style: normal; font-weight: 600; color: var(--ink); }
-    .pattern-quote em { color: var(--gold); }
-
+    .pattern-quote em { color: var(--plum); }
     .pattern-body .eyebrow { margin-bottom: 1.4rem; }
     .pattern-body p {
-      font-size: clamp(0.92rem, 1.6vw, 1.04rem);
-      line-height: 1.85;
-      color: var(--text);
-      margin-bottom: 1.5rem;
+      font-size: clamp(0.92rem,1.6vw,1.02rem); line-height: 1.87;
+      color: var(--text); margin-bottom: 1.4rem;
     }
-
     .stats-strip {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 2.8rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(28, 43, 30, 0.14);
-      flex-wrap: wrap;
+      display: flex; gap: 2.5rem; margin-top: 2.8rem; padding-top: 2rem;
+      border-top: 1px solid rgba(26,11,36,0.12); flex-wrap: wrap;
     }
     .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
-      font-weight: 500;
-      color: var(--gold);
-      line-height: 1;
-      display: block;
+      font-family: 'Cormorant Garamond', serif; font-size: 2.4rem;
+      font-weight: 500; color: var(--plum); line-height: 1; display: block;
     }
     .stat-label {
-      font-size: 0.66rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-lt);
-      display: block;
-      margin-top: 0.3rem;
+      font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-lt); display: block; margin-top: 0.3rem;
     }
 
     /* ── SERVICES ────────────────────────────────────────────── */
-    .services-section {
-      background: var(--ink-mid);
-      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
-    }
+    .services-section { background: var(--ink-mid); padding: clamp(5rem,11vw,9rem) clamp(1.5rem,5vw,4rem); }
     .services-header {
-      max-width: 1100px;
-      margin: 0 auto 3.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 2rem;
-      flex-wrap: wrap;
+      max-width: 1100px; margin: 0 auto 3.5rem;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 2rem; flex-wrap: wrap;
     }
-    .services-header .eyebrow {
-      color: rgba(247, 242, 234, 0.45);
-      margin-bottom: 0.8rem;
-    }
+    .services-header .eyebrow { color: rgba(250,245,240,0.4); margin-bottom: 0.8rem; }
     .services-header h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.15;
+      font-size: clamp(2rem,4.5vw,3.2rem); font-weight: 400;
+      color: var(--cream); line-height: 1.15;
     }
-    .services-header h2 em { font-style: italic; color: var(--gold-lt); }
-    .services-header-right {
-      max-width: 320px;
-      font-size: 0.9rem;
-      color: rgba(247, 242, 234, 0.55);
-      line-height: 1.7;
-    }
-
+    .services-header h2 em { font-style: italic; color: var(--teal-lt); }
+    .services-header-right { max-width: 300px; font-size: 0.88rem; color: rgba(250,245,240,0.5); line-height: 1.7; }
     .services-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.2rem;
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 1.2rem;
     }
-
     .service-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 380px;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      position: relative; overflow: hidden; min-height: 370px;
+      background-size: cover; background-position: center;
+      display: flex; flex-direction: column; justify-content: flex-end;
       transition: transform 0.5s ease;
     }
     .service-card:hover { transform: scale(1.018); }
-
     .card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(28,43,30,0.93) 0%, rgba(28,43,30,0.52) 55%, rgba(28,43,30,0.18) 100%);
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,11,36,0.93) 0%, rgba(26,11,36,0.5) 55%, rgba(26,11,36,0.15) 100%);
       transition: background 0.35s;
     }
     .service-card:hover .card-overlay {
-      background: linear-gradient(to top, rgba(28,43,30,0.85) 0%, rgba(28,43,30,0.42) 55%, rgba(28,43,30,0.1) 100%);
+      background: linear-gradient(to top, rgba(26,11,36,0.85) 0%, rgba(26,11,36,0.4) 55%, rgba(26,11,36,0.08) 100%);
     }
-
-    .card-body {
-      position: relative;
-      z-index: 1;
-      padding: 2.2rem;
-    }
-    .card-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.8rem;
-      color: var(--gold);
-      letter-spacing: 0.18em;
-      margin-bottom: 0.55rem;
-    }
-    .card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
-      font-weight: 500;
-      color: var(--cream);
-      line-height: 1.2;
-      margin-bottom: 0.75rem;
-    }
-    .card-desc {
-      font-size: 0.83rem;
-      font-weight: 300;
-      color: rgba(247, 242, 234, 0.68);
-      line-height: 1.72;
-      margin-bottom: 1.4rem;
-    }
+    .card-body { position: relative; z-index: 1; padding: 2.2rem; }
+    .card-num { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; color: var(--teal-lt); letter-spacing: 0.18em; margin-bottom: 0.5rem; }
+    .card-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem,2.5vw,1.6rem); font-weight: 500; color: var(--cream); line-height: 1.2; margin-bottom: 0.7rem; }
+    .card-desc { font-size: 0.82rem; font-weight: 300; color: rgba(250,245,240,0.65); line-height: 1.72; margin-bottom: 1.3rem; }
     .card-link {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
+      font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--teal-lt); display: inline-flex; align-items: center; gap: 0.45rem;
       transition: gap 0.3s, color 0.3s;
     }
     .service-card:hover .card-link { gap: 0.85rem; }
 
+    /* ── HOW I APPROACH ──────────────────────────────────────── */
+    .approach-section { background: var(--parchment); padding: clamp(5rem,11vw,9rem) clamp(1.5rem,5vw,4rem); }
+    .approach-header { max-width: 1100px; margin: 0 auto 3.5rem; text-align: center; }
+    .approach-header .eyebrow { margin-bottom: 1rem; }
+    .approach-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem,4.5vw,3rem); font-weight: 400; color: var(--ink); line-height: 1.2;
+    }
+    .approach-header h2 em { font-style: italic; color: var(--plum); }
+    .approach-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
+    }
+    .approach-card {
+      background: #fff; padding: 2.4rem 1.8rem;
+      border-top: 3px solid var(--teal); position: relative;
+    }
+    .approach-glyph {
+      font-size: 1.8rem; color: var(--teal); margin-bottom: 1.2rem; display: block;
+    }
+    .approach-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500;
+      color: var(--ink); line-height: 1.25; margin-bottom: 0.9rem;
+    }
+    .approach-card p { font-size: 0.84rem; color: var(--text-lt); line-height: 1.75; }
+
+    /* ── FREE GIFT ───────────────────────────────────────────── */
+    .gift-section {
+      background: var(--teal); padding: clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,4rem);
+    }
+    .gift-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
+    }
+    .gift-eyebrow { font-size: 0.66rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(250,245,240,0.65); margin-bottom: 0.9rem; }
+    .gift-inner h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,4vw,2.8rem);
+      font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 0.9rem;
+    }
+    .gift-inner h2 em { font-style: italic; }
+    .gift-inner p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+    .gift-cta { flex-shrink: 0; }
+    .btn-gift {
+      display: inline-block; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--teal); background: #fff; padding: 1rem 2.2rem;
+      white-space: nowrap; transition: background 0.3s, color 0.3s;
+    }
+    .btn-gift:hover { background: var(--ink); color: #fff; }
+
     /* ── MEET LINDA ──────────────────────────────────────────── */
-    .meet-section {
-      background: var(--cream-dk);
-      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
-    }
+    .meet-section { background: var(--cream); padding: clamp(5rem,11vw,9rem) clamp(1.5rem,5vw,4rem); }
     .meet-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: clamp(3rem, 6vw, 7rem);
-      align-items: start;
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 0.85fr 1.15fr;
+      gap: clamp(3rem,6vw,7rem); align-items: start;
     }
-
-    .meet-photo-wrap {
-      position: relative;
+    .meet-photo-wrap { position: relative; }
+    .meet-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; }
+    .meet-frame {
+      position: absolute; top: -1.3rem; left: -1.3rem; right: 1.3rem; bottom: 1.3rem;
+      border: 1px solid rgba(122,53,135,0.25); pointer-events: none;
     }
-    .meet-photo {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    .meet-photo-frame {
-      position: absolute;
-      top: -1.4rem;
-      left: -1.4rem;
-      right: 1.4rem;
-      bottom: 1.4rem;
-      border: 1px solid rgba(184, 130, 58, 0.28);
-      pointer-events: none;
-    }
-    .meet-caption {
-      margin-top: 1rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-lt);
-    }
-
+    .meet-caption { margin-top: 1rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-lt); }
     .meet-content { padding-top: 0.5rem; }
-    .meet-content .eyebrow { margin-bottom: 1.1rem; }
+    .meet-content .eyebrow { margin-bottom: 1rem; }
     .meet-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1.1;
-      margin-bottom: 0.4rem;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,4.5vw,3.3rem);
+      font-weight: 400; color: var(--ink); line-height: 1.1; margin-bottom: 0.4rem;
     }
-    .meet-name em { font-style: italic; color: var(--gold); }
-    .meet-title {
-      font-size: 0.76rem;
-      color: var(--text-lt);
-      letter-spacing: 0.06em;
-      font-weight: 300;
-      margin-bottom: 2.2rem;
-    }
-
+    .meet-name em { font-style: italic; color: var(--plum); }
+    .meet-title { font-size: 0.74rem; color: var(--text-lt); letter-spacing: 0.06em; font-weight: 300; margin-bottom: 2rem; }
     .meet-blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.05rem, 2vw, 1.3rem);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--gold);
-      border-left: 2px solid var(--gold);
-      padding-left: 1.5rem;
-      margin-bottom: 2.2rem;
-      line-height: 1.55;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem,2vw,1.25rem);
+      font-style: italic; font-weight: 400; color: var(--plum);
+      border-left: 2px solid var(--plum); padding-left: 1.4rem; margin-bottom: 2rem; line-height: 1.55;
     }
-
-    .meet-content p {
-      font-size: 0.95rem;
-      line-height: 1.85;
-      color: var(--text);
-      margin-bottom: 1.2rem;
-    }
-
-    .creds-list {
-      list-style: none;
-      margin-top: 2.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
+    .meet-content p { font-size: 0.94rem; line-height: 1.85; color: var(--text); margin-bottom: 1.2rem; }
+    .creds-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem; }
     .creds-list li {
-      font-size: 0.79rem;
-      color: var(--text-lt);
-      line-height: 1.5;
-      padding-left: 1.3rem;
-      position: relative;
+      font-size: 0.78rem; color: var(--text-lt); line-height: 1.5; padding-left: 1.3rem; position: relative;
     }
-    .creds-list li::before {
-      content: '✦';
-      position: absolute;
-      left: 0;
-      top: 0.18rem;
-      color: var(--gold);
-      font-size: 0.5rem;
+    .creds-list li::before { content: '✦'; position: absolute; left: 0; top: 0.18rem; color: var(--teal); font-size: 0.48rem; }
+    .meet-ctas { margin-top: 2.4rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ── TESTIMONIALS ────────────────────────────────────────── */
+    .testi-section { background: var(--ink); padding: clamp(5rem,11vw,9rem) clamp(1.5rem,5vw,4rem); }
+    .testi-header { max-width: 780px; margin: 0 auto 4rem; text-align: center; }
+    .testi-header .eyebrow { margin-bottom: 1rem; }
+    .testi-header h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem,4.5vw,3rem);
+      font-weight: 400; color: var(--cream); line-height: 1.2;
+    }
+    .testi-header h2 em { font-style: italic; color: var(--teal-lt); }
+    .testi-accordion { max-width: 780px; margin: 0 auto; }
+    .testi-item { border-top: 1px solid rgba(250,245,240,0.1); }
+    .testi-item:last-child { border-bottom: 1px solid rgba(250,245,240,0.1); }
+    .testi-trigger {
+      width: 100%; background: none; border: none; outline: none;
+      -webkit-appearance: none; appearance: none; cursor: pointer;
+      padding: 1.5rem 0; display: flex; align-items: center;
+      justify-content: space-between; gap: 1.2rem; text-align: left;
+    }
+    .testi-meta { display: flex; flex-direction: column; gap: 0.3rem; }
+    .testi-attr { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-lt); }
+    .testi-snippet { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.96rem; color: rgba(250,245,240,0.48); }
+    .testi-icon { flex-shrink: 0; color: var(--teal); font-size: 1.1rem; line-height: 1; transition: transform 0.35s; }
+    .testi-item.open .testi-icon { transform: rotate(45deg); }
+    .testi-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+    .testi-item.open .testi-body { max-height: 700px; }
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.05rem,2.2vw,1.32rem);
+      font-style: italic; font-weight: 300; color: var(--cream); line-height: 1.72; padding-bottom: 2rem;
     }
 
-    .meet-ctas { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    /* ── TESTIMONIALS ─────────────────────────────────────────── */
-    .testi-section {
-      background: var(--ink);
-      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+    /* ── QUIZ ────────────────────────────────────────────────── */
+    .quiz-section { background: var(--ink-lt); padding: clamp(5rem,11vw,9rem) clamp(1.5rem,5vw,4rem); }
+    .quiz-header { max-width: 700px; margin: 0 auto 3.5rem; text-align: center; }
+    .quiz-header .eyebrow { margin-bottom: 1rem; color: var(--teal-lt); }
+    .quiz-header h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4.5vw,3.2rem);
+      font-weight: 400; color: var(--cream); line-height: 1.2; margin-bottom: 0.9rem;
     }
-    .testi-header {
-      max-width: 780px;
-      margin: 0 auto 4rem;
+    .quiz-header h2 em { font-style: italic; color: var(--plum-lt); }
+    .quiz-header p { font-size: 0.92rem; color: rgba(250,245,240,0.6); line-height: 1.7; }
+
+    .quiz-card {
+      max-width: 700px; margin: 0 auto;
+      background: rgba(250,245,240,0.04); border: 1px solid rgba(250,245,240,0.1);
+      padding: 3rem;
+    }
+
+    /* Progress bar */
+    .quiz-progress-wrap { margin-bottom: 2.5rem; }
+    .quiz-progress-label {
+      display: flex; justify-content: space-between; margin-bottom: 0.6rem;
+    }
+    .quiz-step-text { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,245,240,0.4); }
+    .quiz-progress-bar { height: 2px; background: rgba(250,245,240,0.1); position: relative; }
+    .quiz-progress-fill {
+      height: 100%; background: var(--teal); position: absolute; left: 0; top: 0;
+      transition: width 0.5s ease;
+    }
+
+    /* Question */
+    .quiz-question {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem,2.8vw,1.7rem);
+      font-weight: 400; color: var(--cream); line-height: 1.35; margin-bottom: 2rem;
+    }
+
+    /* Options */
+    .quiz-options { display: flex; flex-direction: column; gap: 0.85rem; }
+    .quiz-option {
+      display: flex; align-items: flex-start; gap: 1rem; padding: 1.1rem 1.4rem;
+      border: 1px solid rgba(250,245,240,0.12); cursor: pointer;
+      transition: border-color 0.25s, background 0.25s; background: transparent;
+      width: 100%; text-align: left;
+    }
+    .quiz-option:hover { border-color: var(--teal); background: rgba(61,150,144,0.06); }
+    .quiz-option-letter {
+      font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic;
+      color: var(--teal); flex-shrink: 0; line-height: 1.4; min-width: 1.2rem;
+    }
+    .quiz-option-text { font-size: 0.9rem; color: rgba(250,245,240,0.8); line-height: 1.5; }
+
+    /* Result */
+    .quiz-result { display: none; text-align: center; }
+    .quiz-result.show { display: block; }
+    .quiz-result-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--teal-lt); margin-bottom: 0.8rem; display: block;
+    }
+    .quiz-result-title {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,4vw,2.6rem);
+      font-style: italic; font-weight: 400; color: var(--cream);
+      line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .quiz-result-title em { color: var(--teal-lt); }
+    .quiz-result-desc { font-size: 0.94rem; color: rgba(250,245,240,0.72); line-height: 1.75; margin-bottom: 2.5rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .quiz-result-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .quiz-restart {
+      background: none; border: none; cursor: pointer;
+      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(250,245,240,0.35); transition: color 0.3s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .quiz-restart:hover { color: rgba(250,245,240,0.7); }
+
+    /* Question screen show/hide */
+    .quiz-questions { display: block; }
+    .quiz-questions.hide { display: none; }
+
+    /* ── EXPLORE MORE ────────────────────────────────────────── */
+    .explore-section { background: var(--parchment); padding: clamp(5rem,11vw,9rem) clamp(1.5rem,5vw,4rem); }
+    .explore-header { max-width: 1100px; margin: 0 auto 3rem; }
+    .explore-header .eyebrow { margin-bottom: 0.9rem; }
+    .explore-header h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,4vw,2.8rem);
+      font-weight: 400; color: var(--ink); line-height: 1.2;
+    }
+    .explore-header h2 em { font-style: italic; color: var(--plum); }
+    .explore-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem;
+    }
+    .explore-card {
+      position: relative; overflow: hidden; min-height: 300px;
+      background-size: cover; background-position: center;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      transition: transform 0.4s;
+    }
+    .explore-card:hover { transform: scale(1.015); }
+    .explore-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,11,36,0.9) 0%, rgba(26,11,36,0.35) 60%, rgba(26,11,36,0.1) 100%);
+      transition: background 0.3s;
+    }
+    .explore-card:hover .explore-overlay {
+      background: linear-gradient(to top, rgba(26,11,36,0.8) 0%, rgba(26,11,36,0.28) 60%, rgba(26,11,36,0.05) 100%);
+    }
+    .explore-body { position: relative; z-index: 1; padding: 1.8rem; }
+    .explore-tag {
+      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--teal-lt); margin-bottom: 0.5rem; display: block;
+    }
+    .explore-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500;
+      color: var(--cream); line-height: 1.2; margin-bottom: 0.6rem;
+    }
+    .explore-desc { font-size: 0.8rem; color: rgba(250,245,240,0.62); line-height: 1.65; margin-bottom: 1.2rem; }
+    .explore-link {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--teal-lt); display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.3s;
+    }
+    .explore-card:hover .explore-link { gap: 0.75rem; }
+
+    /* ── SCHEDULE BAND ───────────────────────────────────────── */
+    .schedule-band {
+      background: var(--ink-mid); padding: clamp(3.5rem,7vw,5.5rem) clamp(1.5rem,5vw,4rem);
       text-align: center;
     }
-    .testi-header .eyebrow { margin-bottom: 1.1rem; }
-    .testi-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.9rem, 4.5vw, 3rem);
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.2;
+    .schedule-band p {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(1.4rem,3vw,2rem); font-weight: 300;
+      color: rgba(250,245,240,0.7); margin-bottom: 2rem; line-height: 1.5;
     }
-    .testi-header h2 em { font-style: italic; color: var(--gold-lt); }
-
-    .testi-accordion {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .testi-item {
-      border-top: 1px solid rgba(247, 242, 234, 0.1);
-    }
-    .testi-item:last-child { border-bottom: 1px solid rgba(247, 242, 234, 0.1); }
-
-    .testi-trigger {
-      width: 100%;
-      background: none;
-      border: none;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-      cursor: pointer;
-      padding: 1.6rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.2rem;
-      text-align: left;
-    }
-    .testi-trigger-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .testi-attr {
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .testi-snippet {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.98rem;
-      color: rgba(247, 242, 234, 0.5);
-      font-weight: 300;
-    }
-    .testi-icon {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      color: var(--gold);
-      font-size: 1.15rem;
-      line-height: 1;
-      transition: transform 0.35s;
-    }
-    .testi-item.open .testi-icon { transform: rotate(45deg); }
-
-    .testi-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-    }
-    .testi-item.open .testi-body { max-height: 700px; }
-
-    .testi-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--cream);
-      line-height: 1.7;
-      padding-bottom: 2.2rem;
-    }
+    .schedule-band p em { color: var(--teal-lt); font-style: normal; }
+    .schedule-band-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     /* ── CTA BAND ────────────────────────────────────────────── */
     .cta-band {
-      position: relative;
-      background: var(--ink-mid);
-      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
-      text-align: center;
-      overflow: hidden;
+      position: relative; background: var(--ink-mid);
+      padding: clamp(5rem,11vw,9rem) clamp(1.5rem,5vw,4rem); text-align: center; overflow: hidden;
     }
-    .cta-band-bg {
-      position: absolute;
-      inset: 0;
+    .cta-bg {
+      position: absolute; inset: 0;
       background-image: url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1600&q=80');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.25;
+      background-size: cover; background-position: center; opacity: 0.15;
     }
-    .cta-band-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .cta-band .eyebrow { color: var(--gold-lt); margin-bottom: 1.4rem; }
+    .cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+    .cta-band .eyebrow { color: var(--teal-lt); margin-bottom: 1.4rem; }
     .cta-band h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 5.5vw, 4rem);
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.12;
-      margin-bottom: 1.2rem;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,5.5vw,3.8rem);
+      font-weight: 400; color: var(--cream); line-height: 1.12; margin-bottom: 1.2rem;
     }
-    .cta-band h2 em { font-style: italic; color: var(--gold-lt); }
-    .cta-band p {
-      font-size: 1rem;
-      color: rgba(247, 242, 234, 0.65);
-      line-height: 1.75;
-      margin-bottom: 2.8rem;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .cta-band-btns {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .cta-band h2 em { font-style: italic; color: var(--teal-lt); }
+    .cta-band p { font-size: 1rem; color: rgba(250,245,240,0.62); line-height: 1.75; margin-bottom: 2.8rem; }
+    .cta-band-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     /* ── FOOTER ──────────────────────────────────────────────── */
     footer {
-      background: var(--ink);
-      padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4rem) 2.5rem;
-      border-radius: 3rem 3rem 0 0;
+      background: var(--ink); border-radius: 3rem 3rem 0 0;
+      padding: clamp(3.5rem,7vw,5.5rem) clamp(1.5rem,5vw,4rem) 2.5rem;
     }
     .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
-      gap: 3rem;
-      padding-bottom: 2.8rem;
-      border-bottom: 1px solid rgba(247, 242, 234, 0.08);
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2.8rem; border-bottom: 1px solid rgba(250,245,240,0.08);
     }
-
     .footer-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.45rem;
-      font-weight: 400;
-      color: var(--cream);
-      margin-bottom: 0.3rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.42rem;
+      font-weight: 400; color: var(--cream); margin-bottom: 0.3rem;
     }
-    .footer-brand em { font-style: italic; color: var(--gold-lt); }
-    .footer-tagline {
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(247, 242, 234, 0.38);
-      margin-bottom: 1.5rem;
-    }
-    .footer-contact p {
-      font-size: 0.85rem;
-      color: rgba(247, 242, 234, 0.5);
-      line-height: 1.75;
-    }
-    .footer-contact a { color: var(--gold-lt); transition: color 0.3s; }
+    .footer-brand em { font-style: italic; color: var(--teal-lt); }
+    .footer-tagline { font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(250,245,240,0.35); margin-bottom: 1.5rem; }
+    .footer-contact p { font-size: 0.84rem; color: rgba(250,245,240,0.48); line-height: 1.75; }
+    .footer-contact a { color: var(--teal-lt); transition: color 0.3s; }
     .footer-contact a:hover { color: var(--cream); }
-
-    .footer-col h4 {
-      font-size: 0.62rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.3rem;
-    }
+    .footer-col h4 { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.3rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    .footer-col a {
-      font-size: 0.84rem;
-      color: rgba(247, 242, 234, 0.5);
-      transition: color 0.3s;
-    }
+    .footer-col a { font-size: 0.83rem; color: rgba(250,245,240,0.48); transition: color 0.3s; }
     .footer-col a:hover { color: var(--cream); }
-
     .footer-bottom {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding-top: 1.6rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+      max-width: 1100px; margin: 0 auto; padding-top: 1.6rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
     }
-    .footer-copy {
-      font-size: 0.7rem;
-      color: rgba(247, 242, 234, 0.28);
-    }
-    .footer-copy a { color: var(--gold-lt); }
+    .footer-copy { font-size: 0.68rem; color: rgba(250,245,240,0.25); }
+    .footer-copy a { color: var(--teal-lt); }
 
     /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .approach-grid { grid-template-columns: repeat(2,1fr); }
+      .explore-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
     @media (max-width: 800px) {
       .nav-links, .btn-nav { display: none; }
       .nav-toggle { display: flex; }
-
       .pattern-inner { grid-template-columns: 1fr; }
       .pattern-quote-wrap { position: static; }
-
       .services-grid { grid-template-columns: 1fr; }
-      .service-card { min-height: 320px; }
-
+      .service-card { min-height: 300px; }
       .meet-inner { grid-template-columns: 1fr; }
-      .meet-photo-frame { display: none; }
-
+      .meet-frame { display: none; }
+      .gift-inner { grid-template-columns: 1fr; }
+      .gift-cta { text-align: left; }
       .footer-inner { grid-template-columns: 1fr; gap: 2.2rem; }
-
-      .hero-badges {
-        bottom: 1.2rem;
-        gap: 0.8rem;
-      }
-      .hero-badge { font-size: 0.53rem; }
+      .hero-badges { bottom: 1.2rem; gap: 0.8rem; }
+      .hero-badge { font-size: 0.52rem; }
+      .quiz-card { padding: 2rem 1.5rem; }
     }
 
-    @media (max-width: 480px) {
-      .hero-h1 { font-size: 2.5rem; }
-      .services-header { flex-direction: column; }
-      .stats-strip { gap: 1.6rem; }
+    @media (max-width: 600px) {
+      .approach-grid { grid-template-columns: 1fr; }
+      .explore-grid { grid-template-columns: 1fr; }
     }
 
-    @media (hover: none) {
-      body { cursor: auto; }
-    }
-
-    @media print {
-      .nav, .marquee-wrap, .cta-band-btns { display: none !important; }
-    }
+    @media (hover: none) { body { cursor: auto; } }
+    @media print { .nav, .marquee-wrap { display: none !important; } }
   </style>
 </head>
 
 <body>
-  <!-- JS-loaded flag for reveal system -->
   <script>document.documentElement.classList.add('js');</script>
 
   <!-- ── NAV ─────────────────────────────────────────────────── -->
@@ -913,6 +674,8 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#coaching">Coaching</a></li>
         <li><a href="#training">Training</a></li>
+        <li><a href="#explore">Courses</a></li>
+        <li><a href="#explore">Events</a></li>
       </ul>
       <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-nav">Schedule</a>
     </div>
@@ -921,34 +684,32 @@
     </button>
   </nav>
 
-  <!-- Mobile nav -->
-  <div class="nav-mobile" id="navMobile" role="dialog" aria-modal="true">
+  <div class="nav-mobile" id="navMobile">
     <button class="nav-mobile-close" id="navClose" aria-label="Close menu">✕</button>
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#coaching">Coaching</a>
     <a href="#training">Training</a>
-    <a href="https://wellnessinharmony.as.me/" target="_blank" style="font-family:'DM Sans',sans-serif; font-style:normal; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; background:var(--gold); color:var(--ink); padding:0.9rem 2rem; margin-top:1rem;">Schedule a Session</a>
+    <a href="#explore">Courses & Events</a>
+    <a href="#quiz">Find My Path</a>
+    <a href="https://wellnessinharmony.as.me/" target="_blank" style="font-family:'DM Sans',sans-serif; font-style:normal; font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; background:var(--plum); color:#fff; padding:0.85rem 2rem; margin-top:0.5rem;">Schedule a Session</a>
   </div>
 
   <!-- ── HERO ────────────────────────────────────────────────── -->
   <section class="hero">
     <div class="hero-bg">
-      <img
-        src="https://wellnessinharmony.com/wp-content/uploads/2025/09/WIH2021-Finals-7-scaled.jpg"
-        alt="Linda Dieffenbach — Wellness in Harmony"
-        fetchpriority="high"
-        id="heroImg"
-      >
+      <img src="https://wellnessinharmony.com/wp-content/uploads/2025/09/WIH2021-Finals-7-scaled.jpg"
+           alt="Linda Dieffenbach — Wellness in Harmony"
+           fetchpriority="high" id="heroImg">
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <span class="hero-eyebrow">Holistic Healing · Coaching · Practitioner Training</span>
+      <p class="hero-eyebrow">Holistic Healing · Coaching · Practitioner Training</p>
       <h1 class="hero-h1">There's a Reason<br>This Keeps <em>Happening.</em></h1>
       <p class="hero-sub">When awareness alone isn't enough — real, lasting change begins at the root.</p>
       <div class="hero-ctas">
         <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-primary">Schedule a Session</a>
-        <a href="#services" class="btn-ghost">Explore Services</a>
+        <a href="#services" class="btn-ghost-light">Explore Services</a>
       </div>
     </div>
     <div class="hero-badges">
@@ -969,7 +730,9 @@
       <span>Personal Transformation Coaching</span><span class="sep">·</span>
       <span>Practitioner Training</span><span class="sep">·</span>
       <span>Chakra Clearing</span><span class="sep">·</span>
-      <span>Trauma-Informed Practice</span><span class="sep">✦</span>
+      <span>Trauma-Informed Practice</span><span class="sep">·</span>
+      <span>Animal Reiki</span><span class="sep">·</span>
+      <span>Courses & Events</span><span class="sep">✦</span>
       <span>Transform</span><span class="sep">✦</span>
       <span>Heal</span><span class="sep">✦</span>
       <span>Thrive</span><span class="sep">✦</span>
@@ -978,42 +741,39 @@
       <span>Personal Transformation Coaching</span><span class="sep">·</span>
       <span>Practitioner Training</span><span class="sep">·</span>
       <span>Chakra Clearing</span><span class="sep">·</span>
-      <span>Trauma-Informed Practice</span><span class="sep">✦</span>
+      <span>Trauma-Informed Practice</span><span class="sep">·</span>
+      <span>Animal Reiki</span><span class="sep">·</span>
+      <span>Courses & Events</span><span class="sep">✦</span>
     </div>
   </div>
 
   <!-- ── THE PATTERN ─────────────────────────────────────────── -->
   <section class="pattern-section" id="about">
     <div class="pattern-inner">
-
       <div class="pattern-quote-wrap rv">
         <div class="pattern-openquote">"</div>
-        <p class="pattern-quote">
-          These patterns are not being driven by <em>conscious thought.</em>
-        </p>
+        <p class="pattern-quote">These patterns are not being driven by <em>conscious thought.</em></p>
       </div>
-
-      <div class="pattern-body rv rv-delay-1">
+      <div class="pattern-body rv rv-d1">
         <span class="eyebrow">Why This Keeps Happening</span>
         <p>You can see the pattern, and you've likely tried to change things. You know where the old behaviors and responses lead, and you genuinely want to respond in a different way. Yet somehow, when you find yourself in the moment, it is like something takes over and suddenly you are right back in the same reaction, the same behavior, or the same situation again.</p>
         <p>It's frustrating and confusing. Especially when you have the awareness and you can clearly see what is happening. A lot of people begin questioning themselves at this point because they "know better" intellectually, yet they still find themselves acting in ways they do not fully understand or cannot seem to stop.</p>
-        <p>When you begin working with the underlying root of the pattern, you are no longer trying to force yourself to change the behavior from the surface level. You begin working with the deeper, underlying experiences and conditioning that have been driving your behaviors and responses. This is where people often begin experiencing more meaningful and sustainable shifts in how they think, feel, respond, and move through their lives.</p>
+        <p>When you begin working with the underlying root of the pattern, you are no longer trying to force yourself to change the behavior from the surface level. You begin working with the deeper, underlying experiences and conditioning that have been driving your behaviors and responses. This is where people often begin experiencing more meaningful and sustainable shifts.</p>
         <div class="stats-strip">
           <div>
             <span class="stat-num">20+</span>
             <span class="stat-label">Years of Experience</span>
           </div>
           <div>
-            <span class="stat-num" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; padding-top:0.35rem">Mind · Body</span>
+            <span class="stat-num" style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;padding-top:.35rem">Mind · Body</span>
             <span class="stat-label">& Spirit</span>
           </div>
           <div>
-            <span class="stat-num" style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; padding-top:0.5rem">Trauma</span>
+            <span class="stat-num" style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;padding-top:.5rem">Trauma</span>
             <span class="stat-label">Informed Approach</span>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -1026,10 +786,8 @@
       </div>
       <p class="services-header-right">Your journey is unique. Multiple paths depending on where you are right now and the kind of support you are looking for.</p>
     </div>
-
     <div class="services-grid">
-
-      <div class="service-card rv" style="background-image: url('https://images.unsplash.com/photo-1605552981700-68484762d021?q=80&w=800&auto=format&fit=crop');">
+      <div class="service-card rv" style="background-image:url('https://images.unsplash.com/photo-1605552981700-68484762d021?q=80&w=800&auto=format&fit=crop');">
         <div class="card-overlay"></div>
         <div class="card-body">
           <div class="card-num">01</div>
@@ -1038,8 +796,7 @@
           <a href="https://wellnessinharmony.com/wellness-services/" target="_blank" class="card-link">Learn More →</a>
         </div>
       </div>
-
-      <div class="service-card rv rv-delay-1" style="background-image: url('https://images.unsplash.com/photo-1562026700-3425431ecb5b?q=80&w=1170&auto=format&fit=crop');">
+      <div class="service-card rv rv-d1" style="background-image:url('https://images.unsplash.com/photo-1562026700-3425431ecb5b?q=80&w=1170&auto=format&fit=crop');">
         <div class="card-overlay"></div>
         <div class="card-body">
           <div class="card-num">02</div>
@@ -1048,8 +805,7 @@
           <a href="https://wellnessinharmony.com/wellness-services/" target="_blank" class="card-link">Learn More →</a>
         </div>
       </div>
-
-      <div class="service-card rv rv-delay-2" style="background-image: url('https://images.unsplash.com/photo-1585860095562-08f80ef43d43?q=80&w=800&auto=format&fit=crop');" id="coaching">
+      <div class="service-card rv rv-d2" style="background-image:url('https://images.unsplash.com/photo-1585860095562-08f80ef43d43?q=80&w=800&auto=format&fit=crop');" id="coaching">
         <div class="card-overlay"></div>
         <div class="card-body">
           <div class="card-num">03</div>
@@ -1058,8 +814,7 @@
           <a href="https://wellnessinharmony.com/coaching/" target="_blank" class="card-link">Learn More →</a>
         </div>
       </div>
-
-      <div class="service-card rv rv-delay-3" style="background-image: url('https://images.unsplash.com/photo-1604908506732-46bf709bf6b1?q=80&w=1920&auto=format&fit=crop');" id="training">
+      <div class="service-card rv rv-d3" style="background-image:url('https://images.unsplash.com/photo-1604908506732-46bf709bf6b1?q=80&w=1920&auto=format&fit=crop');" id="training">
         <div class="card-overlay"></div>
         <div class="card-body">
           <div class="card-num">04</div>
@@ -1068,38 +823,70 @@
           <a href="https://wellnessinharmony.com/professional-development-practitioner-training/" target="_blank" class="card-link">Learn More →</a>
         </div>
       </div>
+    </div>
+  </section>
 
+  <!-- ── HOW I APPROACH ──────────────────────────────────────── -->
+  <section class="approach-section">
+    <div class="approach-header rv">
+      <span class="eyebrow">How I Approach This Work</span>
+      <h2>Every session is built on a<br><em>foundation of four principles</em></h2>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-card rv">
+        <span class="approach-glyph">◈</span>
+        <h3>Trauma-Informed Approach</h3>
+        <p>Every interaction is grounded in safety, respect, and compassion. This creates the space you need to do meaningful work without fear of judgment or retraumatization.</p>
+      </div>
+      <div class="approach-card rv rv-d1">
+        <span class="approach-glyph">◇</span>
+        <h3>Personalized Support</h3>
+        <p>No two sessions look alike. I meet you where you are and tailor each experience to meet your current needs and goals. This creates space for deeper awareness and more meaningful change.</p>
+      </div>
+      <div class="approach-card rv rv-d2">
+        <span class="approach-glyph">◉</span>
+        <h3>20 Years of Experience</h3>
+        <p>With nearly two decades in energy healing, coaching, and training, I bring a depth of experience that allows me to see patterns clearly and work with what's actually driving them.</p>
+      </div>
+      <div class="approach-card rv rv-d3">
+        <span class="approach-glyph">⬡</span>
+        <h3>Holistic Growth</h3>
+        <p>We look at the full picture — your thoughts, emotions, history, patterns, and energy — so the changes you're making are integrated and sustainable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FREE GIFT ──────────────────────────────────────────── -->
+  <section class="gift-section">
+    <div class="gift-inner">
+      <div class="rv">
+        <p class="gift-eyebrow">Free Gift</p>
+        <h2>Soulful Self-Care<br><em>Rituals</em></h2>
+        <p>Your free Soulful Self-Care Rituals guide offers simple practices to support your body, mind, and spirit, helping you better navigate life's day-to-day needs and challenges.</p>
+      </div>
+      <div class="gift-cta rv rv-d1">
+        <a href="https://wellnessinharmony.com/" target="_blank" class="btn-gift">Get Your Free Guide</a>
+      </div>
     </div>
   </section>
 
   <!-- ── MEET LINDA ───────────────────────────────────────────── -->
   <section class="meet-section">
     <div class="meet-inner">
-
       <div class="meet-photo-wrap rv">
-        <div class="meet-photo-frame"></div>
-        <img
-          src="https://wellnessinharmony.com/wp-content/uploads/2020/11/LD-2020-Finals-14-scaled.jpg"
-          alt="Linda Dieffenbach — Founder, Wellness in Harmony"
-          class="meet-photo"
-          loading="lazy"
-        >
+        <div class="meet-frame"></div>
+        <img src="https://wellnessinharmony.com/wp-content/uploads/2020/11/LD-2020-Finals-14-scaled.jpg"
+             alt="Linda Dieffenbach — Founder, Wellness in Harmony"
+             class="meet-photo" loading="lazy">
         <p class="meet-caption">© Chorus Photography</p>
       </div>
-
-      <div class="meet-content rv rv-delay-1">
+      <div class="meet-content rv rv-d1">
         <span class="eyebrow">Meet the Founder</span>
         <h2 class="meet-name">Linda <em>Dieffenbach</em></h2>
         <p class="meet-title">Reiki Master Teacher &nbsp;·&nbsp; Holistic Coach &nbsp;·&nbsp; Trauma-Informed Healer &nbsp;·&nbsp; Author &nbsp;·&nbsp; Speaker</p>
-
-        <blockquote class="meet-blockquote">
-          "Healing creates a ripple effect that extends beyond yourself. As you step into your own transformation, you open space for others to heal and grow."
-        </blockquote>
-
+        <blockquote class="meet-blockquote">"Healing creates a ripple effect that extends beyond yourself. As you step into your own transformation, you open space for others to heal and grow."</blockquote>
         <p>Linda Dieffenbach is a seasoned holistic practitioner, Reiki Master Teacher, and trauma-informed coach with over 20 years of experience in the healing arts. As the founder of Wellness in Harmony, she has dedicated her life to empowering individuals to heal, grow, and reclaim their inner strength. Through energy healing, trauma-informed coaching, and intuitive guidance, Linda creates a safe and sacred space where clients feel deeply seen, supported, and nurtured on their healing journey.</p>
-
         <p>Blending her background in social work, energy healing, and coaching, Linda specializes in helping clients break free from limiting patterns, restore energetic balance, and cultivate deep personal transformation. As a trauma survivor herself, Linda ensures every client feels safe, seen, and supported — because she deeply understands the importance of this.</p>
-
         <ul class="creds-list">
           <li>Women's Centered Coaching — Institute for Woman-Centered Coaching</li>
           <li>Usui Reiki Master Teacher · Animal Reiki Master Teacher</li>
@@ -1108,13 +895,11 @@
           <li>Bachelor of Social Work — West Chester University</li>
           <li>Unite for HER Official Reiki Provider</li>
         </ul>
-
         <div class="meet-ctas">
-          <a href="https://wellnessinharmony.com/wellness-in-harmony/linda-dieffenbach/" target="_blank" class="btn-primary" style="background:var(--ink); color:var(--cream);">Read Full Bio</a>
-          <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-ghost" style="border-color: var(--ink); color: var(--ink);">Book a Session</a>
+          <a href="https://wellnessinharmony.com/wellness-in-harmony/linda-dieffenbach/" target="_blank" class="btn-primary">Read Full Bio</a>
+          <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-ghost-dark">Book a Session</a>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -1124,12 +909,10 @@
       <span class="eyebrow">Real Stories of Healing and Transformation</span>
       <h2>No two experiences are the same — the changes are <em>real and lasting.</em></h2>
     </div>
-
-    <div class="testi-accordion rv rv-delay-1">
-
+    <div class="testi-accordion rv rv-d1">
       <div class="testi-item open">
         <button class="testi-trigger" aria-expanded="true">
-          <div class="testi-trigger-meta">
+          <div class="testi-meta">
             <span class="testi-attr">Erin J.</span>
             <span class="testi-snippet">"From the very first session, I felt more empowered..."</span>
           </div>
@@ -1139,10 +922,9 @@
           <p class="testi-quote">"From the very first session, I felt more empowered and emotionally connected to my true self. Linda has a way of uncovering patterns and limiting beliefs I didn't even realize I had, guiding me through a powerful and transformative journey. Her coaching has been life-altering and invaluable."</p>
         </div>
       </div>
-
       <div class="testi-item">
         <button class="testi-trigger" aria-expanded="false">
-          <div class="testi-trigger-meta">
+          <div class="testi-meta">
             <span class="testi-attr">Ada B.</span>
             <span class="testi-snippet">"Linda truly listened with empathy and compassion..."</span>
           </div>
@@ -1152,23 +934,21 @@
           <p class="testi-quote">"Linda truly listened with empathy and compassion, asking the right questions that helped me understand what I needed more clearly. Her guidance brought deep healing and gave me tools I could continue using. I would highly recommend her to anyone working through unresolved grief, loss, or other stressful issues."</p>
         </div>
       </div>
-
       <div class="testi-item">
         <button class="testi-trigger" aria-expanded="false">
-          <div class="testi-trigger-meta">
+          <div class="testi-meta">
             <span class="testi-attr">Bill S.</span>
             <span class="testi-snippet">"Linda has been a wonderful partner in leading me through to a breakthrough..."</span>
           </div>
           <span class="testi-icon">+</span>
         </button>
         <div class="testi-body">
-          <p class="testi-quote">"Linda has been a wonderful partner in leading me through to a breakthrough that has empowered my life immeasurably. I was being held back by a few deep seated patterns that I did not understand, and had previously been unable to overcome. I found Linda to be very insightful, intuitive, caring, and knowledgeable. After a few sessions of working together, Linda was able to "see" and explain to me the patterns and beliefs that were not serving me. She helped me practice to recognize and tune in to these feelings and triggers; and how to respond to prevent them from interfering with my life. Linda taught me some powerful tools and perspectives that made it so much easier and more effective to live the life I've been wanting to live, free from the blocks!"</p>
+          <p class="testi-quote">"Linda has been a wonderful partner in leading me through to a breakthrough that has empowered my life immeasurably. I was being held back by a few deep seated patterns that I did not understand, and had previously been unable to overcome. I found Linda to be very insightful, intuitive, caring, and knowledgeable. After a few sessions of working together, Linda was able to "see" and explain to me the patterns and beliefs that were not serving me. She helped me practice to recognize and tune in to these feelings and triggers; and how to respond to prevent them from interfering with my life."</p>
         </div>
       </div>
-
       <div class="testi-item">
         <button class="testi-trigger" aria-expanded="false">
-          <div class="testi-trigger-meta">
+          <div class="testi-meta">
             <span class="testi-attr">Michelle B.</span>
             <span class="testi-snippet">"Linda's Reiki training was unexpectedly fun, deeply insightful..."</span>
           </div>
@@ -1178,20 +958,100 @@
           <p class="testi-quote">"Linda's Reiki training was unexpectedly fun, deeply insightful, and profoundly healing. Her calm, compassionate presence created a safe, welcoming environment for learning and connection. She goes beyond techniques, weaving in wisdom and ethics that bring Reiki to life. I wholeheartedly recommend her classes."</p>
         </div>
       </div>
+    </div>
+  </section>
 
+  <!-- ── QUIZ: FIND YOUR HEALING PATH ────────────────────────── -->
+  <section class="quiz-section" id="quiz">
+    <div class="quiz-header rv">
+      <span class="eyebrow">Free Assessment</span>
+      <h2>Find Your<br><em>Healing Path</em></h2>
+      <p>Not sure where to begin? Answer four quick questions and discover which of Linda's offerings is the right fit for where you are right now.</p>
+    </div>
+
+    <div class="quiz-card rv rv-d1">
+
+      <!-- Questions -->
+      <div class="quiz-questions" id="quizQuestions">
+        <div class="quiz-progress-wrap">
+          <div class="quiz-progress-label">
+            <span class="quiz-step-text" id="stepText">Question 1 of 4</span>
+            <span class="quiz-step-text" id="stepPct">25%</span>
+          </div>
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill" style="width:25%"></div></div>
+        </div>
+        <p class="quiz-question" id="quizQ"></p>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+
+      <!-- Result -->
+      <div class="quiz-result" id="quizResult">
+        <span class="quiz-result-eyebrow">Your path is…</span>
+        <h3 class="quiz-result-title" id="resultTitle"></h3>
+        <p class="quiz-result-desc" id="resultDesc"></p>
+        <div class="quiz-result-btns" id="resultBtns"></div>
+        <button class="quiz-restart" id="quizRestart">↺ Start over</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SCHEDULE BAND ────────────────────────────────────────── -->
+  <section class="schedule-band">
+    <p class="rv">When you're ready, you can <em>schedule a session</em> or explore our services below:</p>
+    <div class="schedule-band-btns rv rv-d1">
+      <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-primary">Schedule Your Session</a>
+      <a href="#services" class="btn-ghost-light">Explore Our Services</a>
+    </div>
+  </section>
+
+  <!-- ── EXPLORE MORE (Courses · Events · Blog) ───────────────── -->
+  <section class="explore-section" id="explore">
+    <div class="explore-header rv">
+      <span class="eyebrow">Beyond the Session</span>
+      <h2>More Ways to<br><em>Learn & Connect</em></h2>
+    </div>
+    <div class="explore-grid">
+      <div class="explore-card rv" style="background-image:url('https://images.unsplash.com/photo-1585860095562-08f80ef43d43?q=80&w=800&auto=format&fit=crop');">
+        <div class="explore-overlay"></div>
+        <div class="explore-body">
+          <span class="explore-tag">Courses</span>
+          <h3 class="explore-title">Online Learning</h3>
+          <p class="explore-desc">In-depth self-paced courses for healing, personal growth, and self-awareness — structured guidance with practical tools and reflective practices.</p>
+          <a href="https://wellnessinharmony.com/courses/" target="_blank" class="explore-link">Explore Courses →</a>
+        </div>
+      </div>
+      <div class="explore-card rv rv-d1" style="background-image:url('https://images.unsplash.com/photo-1461532257246-777de18cd58b?q=80&w=1176&auto=format&fit=crop');">
+        <div class="explore-overlay"></div>
+        <div class="explore-body">
+          <span class="explore-tag">Events & Workshops</span>
+          <h3 class="explore-title">Live Experiences</h3>
+          <p class="explore-desc">Workshops, circles, and live events for healing and personal development in a shared, real-time setting — combining guided practices, reflection, and facilitated discussion.</p>
+          <a href="https://wellnessinharmony.com/events/" target="_blank" class="explore-link">View Upcoming Events →</a>
+        </div>
+      </div>
+      <div class="explore-card rv rv-d2" style="background-image:url('https://images.unsplash.com/photo-1551621962-b8f40dee2f2c?q=80&w=1600&auto=format&fit=crop');">
+        <div class="explore-overlay"></div>
+        <div class="explore-body">
+          <span class="explore-tag">Blog</span>
+          <h3 class="explore-title">Insights & Wisdom</h3>
+          <p class="explore-desc">Articles, perspectives, and practices to support your healing journey between sessions — a free resource from Linda's two decades of experience.</p>
+          <a href="https://wellnessinharmony.com/blog/" target="_blank" class="explore-link">Read the Blog →</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ── CTA BAND ─────────────────────────────────────────────── -->
   <section class="cta-band">
-    <div class="cta-band-bg"></div>
-    <div class="cta-band-inner rv">
+    <div class="cta-bg"></div>
+    <div class="cta-inner rv">
       <span class="eyebrow">Begin Your Journey</span>
       <h2>Your Healing Path<br>Begins <em>Here.</em></h2>
-      <p>When you're ready to work with the underlying root of what's been holding you back — deeper, lasting change becomes possible.</p>
+      <p>When you're ready to work with the underlying root of what's been holding you back — deeper, lasting change becomes possible. Chester Springs, PA and virtually worldwide.</p>
       <div class="cta-band-btns">
         <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-primary">Schedule Your Session</a>
-        <a href="https://wellnessinharmony.com/coaching/" target="_blank" class="btn-ghost">Explore Coaching</a>
+        <a href="https://wellnessinharmony.com/coaching/" target="_blank" class="btn-ghost-light">Explore Coaching</a>
       </div>
     </div>
   </section>
@@ -1204,7 +1064,7 @@
         <div class="footer-tagline">Transform · Heal · Thrive</div>
         <div class="footer-contact">
           <p>1218 Kimberton Rd.<br>Chester Springs, PA 19425</p>
-          <p style="margin-top:0.8rem"><a href="tel:4843540499">484-354-0499</a></p>
+          <p style="margin-top:.8rem"><a href="tel:4843540499">484-354-0499</a></p>
           <p><a href="mailto:linda@wellnessinharmony.com">linda@wellnessinharmony.com</a></p>
         </div>
       </div>
@@ -1235,38 +1095,31 @@
   </footer>
 
   <script>
-    // ── Nav scroll ─────────────────────────────────────────────
+    // ── Nav ─────────────────────────────────────────────────────
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-    }, { passive: true });
-
-    // ── Mobile nav ─────────────────────────────────────────────
-    const navToggle  = document.getElementById('navToggle');
-    const navMobile  = document.getElementById('navMobile');
-    const navClose   = document.getElementById('navClose');
-
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), { passive: true });
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    const navClose  = document.getElementById('navClose');
     navToggle.addEventListener('click', () => navMobile.classList.add('open'));
     navClose.addEventListener('click',  () => navMobile.classList.remove('open'));
-    navMobile.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => navMobile.classList.remove('open'));
-    });
+    navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMobile.classList.remove('open')));
 
     // ── Hero parallax ──────────────────────────────────────────
     const heroImg = document.getElementById('heroImg');
     const applyLoaded = () => requestAnimationFrame(() => heroImg.classList.add('loaded'));
     heroImg.addEventListener('load', applyLoaded);
     if (heroImg.complete) applyLoaded();
-
     window.addEventListener('scroll', () => {
-      const offset = Math.min(window.scrollY * 0.04, window.innerHeight * 0.055);
+      const offset = Math.min(scrollY * 0.04, innerHeight * 0.055);
       heroImg.style.transform = `scale(1.06) translateY(-${offset}px) translateZ(0)`;
     }, { passive: true });
 
     // ── Scroll reveal ──────────────────────────────────────────
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
-    }, { threshold: 0.1 });
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
+      { threshold: 0.1 }
+    );
     document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
     // ── Testimonial accordion ──────────────────────────────────
@@ -1278,12 +1131,151 @@
           i.classList.remove('open');
           i.querySelector('.testi-trigger').setAttribute('aria-expanded', 'false');
         });
-        if (!isOpen) {
-          item.classList.add('open');
-          btn.setAttribute('aria-expanded', 'true');
-        }
+        if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
       });
     });
+
+    // ── Quiz ───────────────────────────────────────────────────
+    const QUESTIONS = [
+      {
+        q: "What's bringing you here today?",
+        opts: [
+          { text: "I keep repeating the same patterns and I want to finally break free", cat: 'coaching' },
+          { text: "I'm stressed, out of balance, and need deep restoration", cat: 'healing' },
+          { text: "I'm a practitioner looking to grow and deepen my skills", cat: 'training' },
+          { text: "I'm exploring what might help — I'm not quite sure yet", cat: 'explore' },
+        ]
+      },
+      {
+        q: "When you imagine the change you want to create...",
+        opts: [
+          { text: "I want to understand why I keep doing this — and stop it for good", cat: 'coaching' },
+          { text: "I want to feel grounded, calm, and restored in my body", cat: 'healing' },
+          { text: "I want to serve others more confidently and effectively", cat: 'training' },
+          { text: "I want someone to help me find the right direction", cat: 'explore' },
+        ]
+      },
+      {
+        q: "What kind of support resonates with you most?",
+        opts: [
+          { text: "Deep conversation, skill-building, and ongoing coaching partnership", cat: 'coaching' },
+          { text: "Gentle hands-on energy work and healing sessions", cat: 'healing' },
+          { text: "Comprehensive training, certification, or mentorship", cat: 'training' },
+          { text: "A conversation to figure out where to start", cat: 'explore' },
+        ]
+      },
+      {
+        q: "How do you prefer to work?",
+        opts: [
+          { text: "Virtually from anywhere", cat: 'coaching' },
+          { text: "In-person in Chester Springs, PA", cat: 'healing' },
+          { text: "Either works — I just want to begin", cat: 'explore' },
+          { text: "I'm open to whatever works best", cat: 'training' },
+        ]
+      }
+    ];
+
+    const RESULTS = {
+      coaching: {
+        title: 'Personal Transformation *Coaching*',
+        desc: 'Based on your answers, coaching is likely your most powerful next step. You\'re ready to move beyond patterns that have been blocking your confidence, relationships, and life direction — and you want real, sustainable change. Linda\'s Personal Transformation Coaching gives you a collaborative partner and practical tools to create progress you can actually track.',
+        btns: [
+          { label: 'Schedule a Discovery Call', href: 'https://wellnessinharmony.com/coaching/', primary: true },
+          { label: 'Learn About Coaching', href: 'https://wellnessinharmony.com/coaching/', primary: false },
+        ]
+      },
+      healing: {
+        title: 'Reiki & *Energy Healing*',
+        desc: 'Your answers point toward healing. Whether you\'re seeking deep restoration, relief from stress, or simply to feel more grounded and at peace, Reiki and Integrated Energy Healing can offer profound support. Linda\'s sessions are highly individualized, working with what\'s present in your body and life in the moment.',
+        btns: [
+          { label: 'Book a Healing Session', href: 'https://wellnessinharmony.as.me/', primary: true },
+          { label: 'Explore Healing Services', href: 'https://wellnessinharmony.com/wellness-services/', primary: false },
+        ]
+      },
+      training: {
+        title: 'Practitioner Training *& Mentorship*',
+        desc: 'You\'re already in the work, or you feel called to it — and you\'re ready to go deeper. Linda\'s practitioner training and mentorship programs are designed for healers, coaches, and therapists who want a grounded, trauma-informed framework to expand their skills and serve their clients with greater confidence and clarity.',
+        btns: [
+          { label: 'Explore Training Programs', href: 'https://wellnessinharmony.com/professional-development-practitioner-training/', primary: true },
+          { label: 'Book a Call to Learn More', href: 'https://wellnessinharmony.as.me/', primary: false },
+        ]
+      },
+      explore: {
+        title: 'Let\'s Find Your Path *Together*',
+        desc: 'You\'re in the right place — you just need a conversation to find your entry point. Linda offers complimentary discovery calls specifically for people who are drawn to this work but aren\'t sure which path fits best. There\'s no pressure, only clarity.',
+        btns: [
+          { label: 'Book a Complimentary Call', href: 'https://wellnessinharmony.as.me/', primary: true },
+          { label: 'Explore All Services', href: 'https://wellnessinharmony.com/wellness-services/', primary: false },
+        ]
+      }
+    };
+
+    let step = 0;
+    const scores = { coaching: 0, healing: 0, training: 0, explore: 0 };
+    const letters = ['A', 'B', 'C', 'D'];
+
+    function renderQuestion() {
+      const q = QUESTIONS[step];
+      const pct = Math.round(((step + 1) / QUESTIONS.length) * 100);
+      document.getElementById('stepText').textContent = `Question ${step + 1} of ${QUESTIONS.length}`;
+      document.getElementById('stepPct').textContent  = pct + '%';
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('quizQ').textContent = q.q;
+
+      const opts = document.getElementById('quizOptions');
+      opts.innerHTML = '';
+      q.opts.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.innerHTML = `<span class="quiz-option-letter">${letters[i]}</span><span class="quiz-option-text">${opt.text}</span>`;
+        btn.addEventListener('click', () => {
+          scores[opt.cat]++;
+          step++;
+          if (step < QUESTIONS.length) {
+            renderQuestion();
+          } else {
+            showResult();
+          }
+        });
+        opts.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      document.getElementById('quizQuestions').classList.add('hide');
+      const resultEl = document.getElementById('quizResult');
+      resultEl.classList.add('show');
+
+      const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const r = RESULTS[winner];
+
+      // Render italic stars in title
+      const titleEl = document.getElementById('resultTitle');
+      titleEl.innerHTML = r.title.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+      document.getElementById('resultDesc').textContent = r.desc;
+
+      const btnsEl = document.getElementById('resultBtns');
+      btnsEl.innerHTML = '';
+      r.btns.forEach(b => {
+        const a = document.createElement('a');
+        a.href = b.href;
+        a.target = '_blank';
+        a.className = b.primary ? 'btn-primary' : 'btn-ghost-light';
+        a.textContent = b.label;
+        btnsEl.appendChild(a);
+      });
+    }
+
+    document.getElementById('quizRestart').addEventListener('click', () => {
+      step = 0;
+      Object.keys(scores).forEach(k => scores[k] = 0);
+      document.getElementById('quizResult').classList.remove('show');
+      document.getElementById('quizQuestions').classList.remove('hide');
+      renderQuestion();
+    });
+
+    renderQuestion();
   </script>
 </body>
 </html>
