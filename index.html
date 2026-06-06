@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wellness in Harmony — Transformative Healing & Coaching | Linda Dieffenbach</title>
+  <meta name="description" content="Linda Dieffenbach offers trauma-informed energy healing, Reiki, personal transformation coaching, and practitioner training in Chester Springs, PA and virtually.">
+
+  <link rel="icon" type="image/png" href="merkaba-logo.png">
+  <link rel="apple-touch-icon" href="merkaba-logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="https://wellnessinharmony.com/wp-content/uploads/2025/09/WIH2021-Finals-7-scaled.jpg" fetchpriority="high">
+
+  <style>
+    /* ── Reset & Variables ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1c2b1e;
+      --ink-mid:   #243327;
+      --ink-lt:    #2f4233;
+      --cream:     #f7f2ea;
+      --cream-dk:  #ede6d8;
+      --gold:      #b8823a;
+      --gold-lt:   #cda05a;
+      --sage:      #5e7d54;
+      --text:      #2e2b27;
+      --text-lt:   #6b6660;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 300;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ── Utilities ──────────────────────────────────────────── */
+    .eyebrow {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Scroll-reveal — hidden only after JS loads */
+    .js .rv {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.78s ease, transform 0.78s ease;
+    }
+    .rv.visible {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .js .rv-delay-1 { transition-delay: 0.12s; }
+    .js .rv-delay-2 { transition-delay: 0.22s; }
+    .js .rv-delay-3 { transition-delay: 0.34s; }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 1.6rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, backdrop-filter 0.4s, padding 0.3s;
+    }
+    .nav.scrolled {
+      background: rgba(28, 43, 30, 0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .nav-left { display: flex; flex-direction: column; gap: 0.08rem; }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+    .nav-brand em { font-style: italic; color: var(--gold-lt); }
+    .nav-sub {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 234, 0.45);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 234, 0.75);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-lt); }
+
+    .btn-nav {
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gold);
+      padding: 0.65rem 1.5rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.3s;
+      display: inline-block;
+    }
+    .btn-nav:hover { background: var(--gold-lt); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 0.2rem;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* Mobile nav overlay */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--ink);
+      z-index: 199;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.8rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-style: italic;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      transition: color 0.3s;
+    }
+    .nav-mobile a:hover { color: var(--gold-lt); }
+    .nav-mobile-close {
+      position: absolute;
+      top: 1.8rem; right: 2rem;
+      background: none;
+      border: none;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      color: rgba(247, 242, 234, 0.6);
+      font-size: 1.4rem;
+      transition: color 0.3s;
+    }
+    .nav-mobile-close:hover { color: var(--cream); }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transform: scale(1.08) translateZ(0);
+      will-change: transform;
+      transition: transform 8s ease;
+    }
+    .hero-bg img.loaded { transform: scale(1.06) translateZ(0); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(28, 43, 30, 0.25) 0%,
+        rgba(28, 43, 30, 0.55) 45%,
+        rgba(28, 43, 30, 0.82) 85%,
+        rgba(28, 43, 30, 0.93) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: clamp(7rem, 16vw, 11rem) clamp(1.5rem, 6vw, 5rem) clamp(5rem, 10vw, 7rem);
+      max-width: 920px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.66rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 7.5vw, 5.8rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.08;
+      margin-bottom: 1.6rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 300;
+      color: rgba(247, 242, 234, 0.7);
+      max-width: 540px;
+      margin: 0 auto 2.8rem;
+      line-height: 1.75;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gold);
+      padding: 1rem 2.4rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.3s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-lt); }
+
+    .btn-ghost {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: transparent;
+      padding: 1rem 2.4rem;
+      border: 1px solid rgba(247, 242, 234, 0.35);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: border-color 0.3s, color 0.3s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
+
+    .hero-badges {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 0; right: 0;
+      z-index: 1;
+      display: flex;
+      gap: clamp(1rem, 3vw, 2.5rem);
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 1.5rem;
+    }
+    .hero-badge {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 234, 0.55);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-badge::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    /* ── MARQUEE ─────────────────────────────────────────────── */
+    .marquee-wrap {
+      background: var(--ink);
+      padding: 1.15rem 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      animation: marquee 32s linear infinite;
+      width: max-content;
+    }
+    .marquee-track span {
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 234, 0.45);
+      padding: 0 1.5rem;
+      white-space: nowrap;
+    }
+    .marquee-track .sep {
+      color: var(--gold);
+      padding: 0 0.2rem;
+      letter-spacing: 0;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+    /* ── PATTERN SECTION ─────────────────────────────────────── */
+    .pattern-section {
+      background: var(--cream);
+      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    .pattern-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: start;
+    }
+
+    .pattern-quote-wrap {
+      position: sticky;
+      top: 7rem;
+    }
+    .pattern-openquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7rem;
+      line-height: 0.6;
+      color: var(--gold);
+      opacity: 0.22;
+      margin-bottom: 1.6rem;
+    }
+    .pattern-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.3;
+      font-style: italic;
+    }
+    .pattern-quote strong { font-style: normal; font-weight: 600; color: var(--ink); }
+    .pattern-quote em { color: var(--gold); }
+
+    .pattern-body .eyebrow { margin-bottom: 1.4rem; }
+    .pattern-body p {
+      font-size: clamp(0.92rem, 1.6vw, 1.04rem);
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .stats-strip {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(28, 43, 30, 0.14);
+      flex-wrap: wrap;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    /* ── SERVICES ────────────────────────────────────────────── */
+    .services-section {
+      background: var(--ink-mid);
+      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    .services-header {
+      max-width: 1100px;
+      margin: 0 auto 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .services-header .eyebrow {
+      color: rgba(247, 242, 234, 0.45);
+      margin-bottom: 0.8rem;
+    }
+    .services-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.15;
+    }
+    .services-header h2 em { font-style: italic; color: var(--gold-lt); }
+    .services-header-right {
+      max-width: 320px;
+      font-size: 0.9rem;
+      color: rgba(247, 242, 234, 0.55);
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover { transform: scale(1.018); }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,43,30,0.93) 0%, rgba(28,43,30,0.52) 55%, rgba(28,43,30,0.18) 100%);
+      transition: background 0.35s;
+    }
+    .service-card:hover .card-overlay {
+      background: linear-gradient(to top, rgba(28,43,30,0.85) 0%, rgba(28,43,30,0.42) 55%, rgba(28,43,30,0.1) 100%);
+    }
+
+    .card-body {
+      position: relative;
+      z-index: 1;
+      padding: 2.2rem;
+    }
+    .card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      margin-bottom: 0.55rem;
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .card-desc {
+      font-size: 0.83rem;
+      font-weight: 300;
+      color: rgba(247, 242, 234, 0.68);
+      line-height: 1.72;
+      margin-bottom: 1.4rem;
+    }
+    .card-link {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: gap 0.3s, color 0.3s;
+    }
+    .service-card:hover .card-link { gap: 0.85rem; }
+
+    /* ── MEET LINDA ──────────────────────────────────────────── */
+    .meet-section {
+      background: var(--cream-dk);
+      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    .meet-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: start;
+    }
+
+    .meet-photo-wrap {
+      position: relative;
+    }
+    .meet-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .meet-photo-frame {
+      position: absolute;
+      top: -1.4rem;
+      left: -1.4rem;
+      right: 1.4rem;
+      bottom: 1.4rem;
+      border: 1px solid rgba(184, 130, 58, 0.28);
+      pointer-events: none;
+    }
+    .meet-caption {
+      margin-top: 1rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+    }
+
+    .meet-content { padding-top: 0.5rem; }
+    .meet-content .eyebrow { margin-bottom: 1.1rem; }
+    .meet-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+    .meet-name em { font-style: italic; color: var(--gold); }
+    .meet-title {
+      font-size: 0.76rem;
+      color: var(--text-lt);
+      letter-spacing: 0.06em;
+      font-weight: 300;
+      margin-bottom: 2.2rem;
+    }
+
+    .meet-blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin-bottom: 2.2rem;
+      line-height: 1.55;
+    }
+
+    .meet-content p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    .creds-list {
+      list-style: none;
+      margin-top: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .creds-list li {
+      font-size: 0.79rem;
+      color: var(--text-lt);
+      line-height: 1.5;
+      padding-left: 1.3rem;
+      position: relative;
+    }
+    .creds-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      top: 0.18rem;
+      color: var(--gold);
+      font-size: 0.5rem;
+    }
+
+    .meet-ctas { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ── TESTIMONIALS ─────────────────────────────────────────── */
+    .testi-section {
+      background: var(--ink);
+      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    .testi-header {
+      max-width: 780px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+    .testi-header .eyebrow { margin-bottom: 1.1rem; }
+    .testi-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .testi-header h2 em { font-style: italic; color: var(--gold-lt); }
+
+    .testi-accordion {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .testi-item {
+      border-top: 1px solid rgba(247, 242, 234, 0.1);
+    }
+    .testi-item:last-child { border-bottom: 1px solid rgba(247, 242, 234, 0.1); }
+
+    .testi-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 1.6rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      text-align: left;
+    }
+    .testi-trigger-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .testi-attr {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .testi-snippet {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.98rem;
+      color: rgba(247, 242, 234, 0.5);
+      font-weight: 300;
+    }
+    .testi-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--gold);
+      font-size: 1.15rem;
+      line-height: 1;
+      transition: transform 0.35s;
+    }
+    .testi-item.open .testi-icon { transform: rotate(45deg); }
+
+    .testi-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .testi-item.open .testi-body { max-height: 700px; }
+
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.7;
+      padding-bottom: 2.2rem;
+    }
+
+    /* ── CTA BAND ────────────────────────────────────────────── */
+    .cta-band {
+      position: relative;
+      background: var(--ink-mid);
+      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-band-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+    }
+    .cta-band-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-band .eyebrow { color: var(--gold-lt); margin-bottom: 1.4rem; }
+    .cta-band h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.12;
+      margin-bottom: 1.2rem;
+    }
+    .cta-band h2 em { font-style: italic; color: var(--gold-lt); }
+    .cta-band p {
+      font-size: 1rem;
+      color: rgba(247, 242, 234, 0.65);
+      line-height: 1.75;
+      margin-bottom: 2.8rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-band-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4rem) 2.5rem;
+      border-radius: 3rem 3rem 0 0;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid rgba(247, 242, 234, 0.08);
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+    .footer-brand em { font-style: italic; color: var(--gold-lt); }
+    .footer-tagline {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 234, 0.38);
+      margin-bottom: 1.5rem;
+    }
+    .footer-contact p {
+      font-size: 0.85rem;
+      color: rgba(247, 242, 234, 0.5);
+      line-height: 1.75;
+    }
+    .footer-contact a { color: var(--gold-lt); transition: color 0.3s; }
+    .footer-contact a:hover { color: var(--cream); }
+
+    .footer-col h4 {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.3rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-col a {
+      font-size: 0.84rem;
+      color: rgba(247, 242, 234, 0.5);
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--cream); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 1.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(247, 242, 234, 0.28);
+    }
+    .footer-copy a { color: var(--gold-lt); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .nav-links, .btn-nav { display: none; }
+      .nav-toggle { display: flex; }
+
+      .pattern-inner { grid-template-columns: 1fr; }
+      .pattern-quote-wrap { position: static; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: 320px; }
+
+      .meet-inner { grid-template-columns: 1fr; }
+      .meet-photo-frame { display: none; }
+
+      .footer-inner { grid-template-columns: 1fr; gap: 2.2rem; }
+
+      .hero-badges {
+        bottom: 1.2rem;
+        gap: 0.8rem;
+      }
+      .hero-badge { font-size: 0.53rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-h1 { font-size: 2.5rem; }
+      .services-header { flex-direction: column; }
+      .stats-strip { gap: 1.6rem; }
+    }
+
+    @media (hover: none) {
+      body { cursor: auto; }
+    }
+
+    @media print {
+      .nav, .marquee-wrap, .cta-band-btns { display: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- JS-loaded flag for reveal system -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- ── NAV ─────────────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-left">
+      <a href="#" class="nav-brand">Wellness <em>in</em> Harmony</a>
+      <span class="nav-sub">Linda Dieffenbach · Chester Springs, PA</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#coaching">Coaching</a></li>
+        <li><a href="#training">Training</a></li>
+      </ul>
+      <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-nav">Schedule</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav-mobile" id="navMobile" role="dialog" aria-modal="true">
+    <button class="nav-mobile-close" id="navClose" aria-label="Close menu">✕</button>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#coaching">Coaching</a>
+    <a href="#training">Training</a>
+    <a href="https://wellnessinharmony.as.me/" target="_blank" style="font-family:'DM Sans',sans-serif; font-style:normal; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; background:var(--gold); color:var(--ink); padding:0.9rem 2rem; margin-top:1rem;">Schedule a Session</a>
+  </div>
+
+  <!-- ── HERO ────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img
+        src="https://wellnessinharmony.com/wp-content/uploads/2025/09/WIH2021-Finals-7-scaled.jpg"
+        alt="Linda Dieffenbach — Wellness in Harmony"
+        fetchpriority="high"
+        id="heroImg"
+      >
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Holistic Healing · Coaching · Practitioner Training</span>
+      <h1 class="hero-h1">There's a Reason<br>This Keeps <em>Happening.</em></h1>
+      <p class="hero-sub">When awareness alone isn't enough — real, lasting change begins at the root.</p>
+      <div class="hero-ctas">
+        <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-primary">Schedule a Session</a>
+        <a href="#services" class="btn-ghost">Explore Services</a>
+      </div>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge">20+ Years Experience</span>
+      <span class="hero-badge">Trauma-Informed Practice</span>
+      <span class="hero-badge">In-Person & Virtual</span>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ─────────────────────────────────────────────── -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Transform</span><span class="sep">✦</span>
+      <span>Heal</span><span class="sep">✦</span>
+      <span>Thrive</span><span class="sep">✦</span>
+      <span>Integrated Energy Healing</span><span class="sep">·</span>
+      <span>Reiki Healing</span><span class="sep">·</span>
+      <span>Personal Transformation Coaching</span><span class="sep">·</span>
+      <span>Practitioner Training</span><span class="sep">·</span>
+      <span>Chakra Clearing</span><span class="sep">·</span>
+      <span>Trauma-Informed Practice</span><span class="sep">✦</span>
+      <span>Transform</span><span class="sep">✦</span>
+      <span>Heal</span><span class="sep">✦</span>
+      <span>Thrive</span><span class="sep">✦</span>
+      <span>Integrated Energy Healing</span><span class="sep">·</span>
+      <span>Reiki Healing</span><span class="sep">·</span>
+      <span>Personal Transformation Coaching</span><span class="sep">·</span>
+      <span>Practitioner Training</span><span class="sep">·</span>
+      <span>Chakra Clearing</span><span class="sep">·</span>
+      <span>Trauma-Informed Practice</span><span class="sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ── THE PATTERN ─────────────────────────────────────────── -->
+  <section class="pattern-section" id="about">
+    <div class="pattern-inner">
+
+      <div class="pattern-quote-wrap rv">
+        <div class="pattern-openquote">"</div>
+        <p class="pattern-quote">
+          These patterns are not being driven by <em>conscious thought.</em>
+        </p>
+      </div>
+
+      <div class="pattern-body rv rv-delay-1">
+        <span class="eyebrow">Why This Keeps Happening</span>
+        <p>You can see the pattern, and you've likely tried to change things. You know where the old behaviors and responses lead, and you genuinely want to respond in a different way. Yet somehow, when you find yourself in the moment, it is like something takes over and suddenly you are right back in the same reaction, the same behavior, or the same situation again.</p>
+        <p>It's frustrating and confusing. Especially when you have the awareness and you can clearly see what is happening. A lot of people begin questioning themselves at this point because they "know better" intellectually, yet they still find themselves acting in ways they do not fully understand or cannot seem to stop.</p>
+        <p>When you begin working with the underlying root of the pattern, you are no longer trying to force yourself to change the behavior from the surface level. You begin working with the deeper, underlying experiences and conditioning that have been driving your behaviors and responses. This is where people often begin experiencing more meaningful and sustainable shifts in how they think, feel, respond, and move through their lives.</p>
+        <div class="stats-strip">
+          <div>
+            <span class="stat-num">20+</span>
+            <span class="stat-label">Years of Experience</span>
+          </div>
+          <div>
+            <span class="stat-num" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; padding-top:0.35rem">Mind · Body</span>
+            <span class="stat-label">& Spirit</span>
+          </div>
+          <div>
+            <span class="stat-num" style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; padding-top:0.5rem">Trauma</span>
+            <span class="stat-label">Informed Approach</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SERVICES ────────────────────────────────────────────── -->
+  <section class="services-section" id="services">
+    <div class="services-header rv">
+      <div>
+        <span class="eyebrow">Your Healing & Empowerment Paths</span>
+        <h2>Ways We Can<br>Work <em>Together</em></h2>
+      </div>
+      <p class="services-header-right">Your journey is unique. Multiple paths depending on where you are right now and the kind of support you are looking for.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card rv" style="background-image: url('https://images.unsplash.com/photo-1605552981700-68484762d021?q=80&w=800&auto=format&fit=crop');">
+        <div class="card-overlay"></div>
+        <div class="card-body">
+          <div class="card-num">01</div>
+          <h3 class="card-title">Integrated Energy Healing</h3>
+          <p class="card-desc">A highly individualized experience that draws on a blend of modalities and practices to meet your needs in the moment — working directly with the patterns, emotions, and energy present.</p>
+          <a href="https://wellnessinharmony.com/wellness-services/" target="_blank" class="card-link">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="service-card rv rv-delay-1" style="background-image: url('https://images.unsplash.com/photo-1562026700-3425431ecb5b?q=80&w=1170&auto=format&fit=crop');">
+        <div class="card-overlay"></div>
+        <div class="card-body">
+          <div class="card-num">02</div>
+          <h3 class="card-title">Reiki Healing</h3>
+          <p class="card-desc">A gentle, hands-on practice that promotes deep relaxation, eases stress, supports pain relief, and strengthens your body's natural ability to heal. Sessions available in person and virtually. Animal Reiki also available.</p>
+          <a href="https://wellnessinharmony.com/wellness-services/" target="_blank" class="card-link">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="service-card rv rv-delay-2" style="background-image: url('https://images.unsplash.com/photo-1585860095562-08f80ef43d43?q=80&w=800&auto=format&fit=crop');" id="coaching">
+        <div class="card-overlay"></div>
+        <div class="card-body">
+          <div class="card-num">03</div>
+          <h3 class="card-title">Personal Transformation Coaching</h3>
+          <p class="card-desc">Focused guidance to help you move beyond old patterns and create lasting, sustainable change. Coaching gives you the clarity to see what's been holding you back, the tools to shift it, and the confidence to build healthier relationships.</p>
+          <a href="https://wellnessinharmony.com/coaching/" target="_blank" class="card-link">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="service-card rv rv-delay-3" style="background-image: url('https://images.unsplash.com/photo-1604908506732-46bf709bf6b1?q=80&w=1920&auto=format&fit=crop');" id="training">
+        <div class="card-overlay"></div>
+        <div class="card-body">
+          <div class="card-num">04</div>
+          <h3 class="card-title">Practitioner Training & Mentorship</h3>
+          <p class="card-desc">If you're a practitioner seeking to expand your skills, or you feel called to support others through the healing arts, I offer training, mentorship, and professional development grounded in trauma-informed practice.</p>
+          <a href="https://wellnessinharmony.com/professional-development-practitioner-training/" target="_blank" class="card-link">Learn More →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── MEET LINDA ───────────────────────────────────────────── -->
+  <section class="meet-section">
+    <div class="meet-inner">
+
+      <div class="meet-photo-wrap rv">
+        <div class="meet-photo-frame"></div>
+        <img
+          src="https://wellnessinharmony.com/wp-content/uploads/2020/11/LD-2020-Finals-14-scaled.jpg"
+          alt="Linda Dieffenbach — Founder, Wellness in Harmony"
+          class="meet-photo"
+          loading="lazy"
+        >
+        <p class="meet-caption">© Chorus Photography</p>
+      </div>
+
+      <div class="meet-content rv rv-delay-1">
+        <span class="eyebrow">Meet the Founder</span>
+        <h2 class="meet-name">Linda <em>Dieffenbach</em></h2>
+        <p class="meet-title">Reiki Master Teacher &nbsp;·&nbsp; Holistic Coach &nbsp;·&nbsp; Trauma-Informed Healer &nbsp;·&nbsp; Author &nbsp;·&nbsp; Speaker</p>
+
+        <blockquote class="meet-blockquote">
+          "Healing creates a ripple effect that extends beyond yourself. As you step into your own transformation, you open space for others to heal and grow."
+        </blockquote>
+
+        <p>Linda Dieffenbach is a seasoned holistic practitioner, Reiki Master Teacher, and trauma-informed coach with over 20 years of experience in the healing arts. As the founder of Wellness in Harmony, she has dedicated her life to empowering individuals to heal, grow, and reclaim their inner strength. Through energy healing, trauma-informed coaching, and intuitive guidance, Linda creates a safe and sacred space where clients feel deeply seen, supported, and nurtured on their healing journey.</p>
+
+        <p>Blending her background in social work, energy healing, and coaching, Linda specializes in helping clients break free from limiting patterns, restore energetic balance, and cultivate deep personal transformation. As a trauma survivor herself, Linda ensures every client feels safe, seen, and supported — because she deeply understands the importance of this.</p>
+
+        <ul class="creds-list">
+          <li>Women's Centered Coaching — Institute for Woman-Centered Coaching</li>
+          <li>Usui Reiki Master Teacher · Animal Reiki Master Teacher</li>
+          <li>Heart IQ Mastery Practitioner/Coach — Christian Pankhurst, DC</li>
+          <li>Somatic Embodiment and Regulation · Polyvagal Meditation</li>
+          <li>Bachelor of Social Work — West Chester University</li>
+          <li>Unite for HER Official Reiki Provider</li>
+        </ul>
+
+        <div class="meet-ctas">
+          <a href="https://wellnessinharmony.com/wellness-in-harmony/linda-dieffenbach/" target="_blank" class="btn-primary" style="background:var(--ink); color:var(--cream);">Read Full Bio</a>
+          <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-ghost" style="border-color: var(--ink); color: var(--ink);">Book a Session</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ─────────────────────────────────────────── -->
+  <section class="testi-section">
+    <div class="testi-header rv">
+      <span class="eyebrow">Real Stories of Healing and Transformation</span>
+      <h2>No two experiences are the same — the changes are <em>real and lasting.</em></h2>
+    </div>
+
+    <div class="testi-accordion rv rv-delay-1">
+
+      <div class="testi-item open">
+        <button class="testi-trigger" aria-expanded="true">
+          <div class="testi-trigger-meta">
+            <span class="testi-attr">Erin J.</span>
+            <span class="testi-snippet">"From the very first session, I felt more empowered..."</span>
+          </div>
+          <span class="testi-icon">+</span>
+        </button>
+        <div class="testi-body">
+          <p class="testi-quote">"From the very first session, I felt more empowered and emotionally connected to my true self. Linda has a way of uncovering patterns and limiting beliefs I didn't even realize I had, guiding me through a powerful and transformative journey. Her coaching has been life-altering and invaluable."</p>
+        </div>
+      </div>
+
+      <div class="testi-item">
+        <button class="testi-trigger" aria-expanded="false">
+          <div class="testi-trigger-meta">
+            <span class="testi-attr">Ada B.</span>
+            <span class="testi-snippet">"Linda truly listened with empathy and compassion..."</span>
+          </div>
+          <span class="testi-icon">+</span>
+        </button>
+        <div class="testi-body">
+          <p class="testi-quote">"Linda truly listened with empathy and compassion, asking the right questions that helped me understand what I needed more clearly. Her guidance brought deep healing and gave me tools I could continue using. I would highly recommend her to anyone working through unresolved grief, loss, or other stressful issues."</p>
+        </div>
+      </div>
+
+      <div class="testi-item">
+        <button class="testi-trigger" aria-expanded="false">
+          <div class="testi-trigger-meta">
+            <span class="testi-attr">Bill S.</span>
+            <span class="testi-snippet">"Linda has been a wonderful partner in leading me through to a breakthrough..."</span>
+          </div>
+          <span class="testi-icon">+</span>
+        </button>
+        <div class="testi-body">
+          <p class="testi-quote">"Linda has been a wonderful partner in leading me through to a breakthrough that has empowered my life immeasurably. I was being held back by a few deep seated patterns that I did not understand, and had previously been unable to overcome. I found Linda to be very insightful, intuitive, caring, and knowledgeable. After a few sessions of working together, Linda was able to "see" and explain to me the patterns and beliefs that were not serving me. She helped me practice to recognize and tune in to these feelings and triggers; and how to respond to prevent them from interfering with my life. Linda taught me some powerful tools and perspectives that made it so much easier and more effective to live the life I've been wanting to live, free from the blocks!"</p>
+        </div>
+      </div>
+
+      <div class="testi-item">
+        <button class="testi-trigger" aria-expanded="false">
+          <div class="testi-trigger-meta">
+            <span class="testi-attr">Michelle B.</span>
+            <span class="testi-snippet">"Linda's Reiki training was unexpectedly fun, deeply insightful..."</span>
+          </div>
+          <span class="testi-icon">+</span>
+        </button>
+        <div class="testi-body">
+          <p class="testi-quote">"Linda's Reiki training was unexpectedly fun, deeply insightful, and profoundly healing. Her calm, compassionate presence created a safe, welcoming environment for learning and connection. She goes beyond techniques, weaving in wisdom and ethics that bring Reiki to life. I wholeheartedly recommend her classes."</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CTA BAND ─────────────────────────────────────────────── -->
+  <section class="cta-band">
+    <div class="cta-band-bg"></div>
+    <div class="cta-band-inner rv">
+      <span class="eyebrow">Begin Your Journey</span>
+      <h2>Your Healing Path<br>Begins <em>Here.</em></h2>
+      <p>When you're ready to work with the underlying root of what's been holding you back — deeper, lasting change becomes possible.</p>
+      <div class="cta-band-btns">
+        <a href="https://wellnessinharmony.as.me/" target="_blank" class="btn-primary">Schedule Your Session</a>
+        <a href="https://wellnessinharmony.com/coaching/" target="_blank" class="btn-ghost">Explore Coaching</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Wellness <em>in</em> Harmony</div>
+        <div class="footer-tagline">Transform · Heal · Thrive</div>
+        <div class="footer-contact">
+          <p>1218 Kimberton Rd.<br>Chester Springs, PA 19425</p>
+          <p style="margin-top:0.8rem"><a href="tel:4843540499">484-354-0499</a></p>
+          <p><a href="mailto:linda@wellnessinharmony.com">linda@wellnessinharmony.com</a></p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="https://wellnessinharmony.com/wellness-in-harmony/linda-dieffenbach/" target="_blank">About Linda</a></li>
+          <li><a href="https://wellnessinharmony.com/coaching/" target="_blank">Coaching Services</a></li>
+          <li><a href="https://wellnessinharmony.com/wellness-services/" target="_blank">Healing Services</a></li>
+          <li><a href="https://wellnessinharmony.com/professional-development-practitioner-training/" target="_blank">Practitioner Training</a></li>
+          <li><a href="https://wellnessinharmony.com/courses/" target="_blank">Online Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://wellnessinharmony.com/events/" target="_blank">Upcoming Events</a></li>
+          <li><a href="https://wellnessinharmony.com/blog/" target="_blank">Blog</a></li>
+          <li><a href="https://wellnessinharmony.as.me/" target="_blank">Schedule a Session</a></li>
+          <li><a href="mailto:linda@wellnessinharmony.com">Contact Linda</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Wellness in Harmony LLC &nbsp;·&nbsp; Linda Dieffenbach &nbsp;·&nbsp; Chester Springs, PA</span>
+      <span class="footer-copy">Site by <a href="https://designmywebsitenow.com" target="_blank">Merkaba Studio</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // ── Nav scroll ─────────────────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // ── Mobile nav ─────────────────────────────────────────────
+    const navToggle  = document.getElementById('navToggle');
+    const navMobile  = document.getElementById('navMobile');
+    const navClose   = document.getElementById('navClose');
+
+    navToggle.addEventListener('click', () => navMobile.classList.add('open'));
+    navClose.addEventListener('click',  () => navMobile.classList.remove('open'));
+    navMobile.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navMobile.classList.remove('open'));
+    });
+
+    // ── Hero parallax ──────────────────────────────────────────
+    const heroImg = document.getElementById('heroImg');
+    const applyLoaded = () => requestAnimationFrame(() => heroImg.classList.add('loaded'));
+    heroImg.addEventListener('load', applyLoaded);
+    if (heroImg.complete) applyLoaded();
+
+    window.addEventListener('scroll', () => {
+      const offset = Math.min(window.scrollY * 0.04, window.innerHeight * 0.055);
+      heroImg.style.transform = `scale(1.06) translateY(-${offset}px) translateZ(0)`;
+    }, { passive: true });
+
+    // ── Scroll reveal ──────────────────────────────────────────
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+    // ── Testimonial accordion ──────────────────────────────────
+    document.querySelectorAll('.testi-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.testi-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.testi-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.testi-trigger').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
